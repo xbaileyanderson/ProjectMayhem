@@ -11,14 +11,14 @@ public abstract class College {
   public static int move1(){
     Random rand = new Random();
     int baseDamage = 5;
-    int damage = baseDamage+rand.nextInt(10);
+    int damage = baseDamage+rand.nextInt(15);
     return damage;
   }
 
   public static int move2(){
     Random rand = new Random();
-    int baseDamage = 5;
-    int damage = baseDamage + rand.nextInt(20);
+    int baseDamage = 0;
+    int damage = baseDamage + rand.nextInt(25);
     return damage;
   };
 
