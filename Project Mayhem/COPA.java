@@ -1,8 +1,8 @@
 import java.util.Random;
 class COPA extends College{
+  int health = 100;
   COPA()
   {
-    int health = 100;
   }
 
 
@@ -19,7 +19,7 @@ class COPA extends College{
   public int move4()
   {
     Random rand = new Random();
-    int damage = baseDamage+rand.nextInt(50);
+    int damage = 5 + rand.nextInt(50);
     return damage;
   }
 
