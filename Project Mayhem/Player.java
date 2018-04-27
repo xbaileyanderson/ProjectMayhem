@@ -3,31 +3,40 @@ public class Player {
   private String name;
   private String catchphrase;
 
-  public void setCollege(String c) {
+  public void setCollege(String c)
+  {
     this.college = c;
   }
-  public String getCollege() {
+  public String getCollege()
+  {
     return this.college;
   }
-  public void setName(String n) {
+  public void setName(String n)
+  {
     this.name = n;
   }
-  public String getName() {
+  public String getName()
+  {
     return this.name;
   }
-  public void setCatchphrase(String cp) {
+  public void setCatchphrase(String cp)
+  {
     this.catchphrase = cp;
   }
-  public String getCatchphrase() {
+  public String getCatchphrase()
+  {
     return this.catchphrase;
   }
-  public int win() {
+  public int win()
+  {
     return 1;
   }
-  public int lose() {
+  public int lose()
+  {
     return 1;
   }
-  public int play() {
+  public int play()
+  {
     return 1;
   }
 }

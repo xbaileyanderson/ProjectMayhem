@@ -23,8 +23,6 @@ public class ClientHandler implements Runnable{
   private Socket connectionSock = null;
   private ArrayList<Socket> socketList;
 
-
-
   Socket player1;
   Socket player2;
   private BufferedReader player1Input;

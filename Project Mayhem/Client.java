@@ -16,7 +16,6 @@ public class Client
       String hostname = "localhost";
       int port = 7654;
       Player player = new Player();
-
       System.out.println("Connecting to server on port " + port);
       Socket connectionSock = new Socket(hostname, port);
       DataOutputStream serverOutput = new DataOutputStream(connectionSock.getOutputStream());
