@@ -1,5 +1,6 @@
 import java.util.Random;
-public abstract class College {
+public abstract class College
+{
 
   //Strings each class needs
   private String name;
@@ -8,14 +9,16 @@ public abstract class College {
 
   //moves 1 and 2 are standard for all classes
   //moves 3 and 4 are defined in derived classes
-  public static int move1(){
+  public static int move1()
+  {
     Random rand = new Random();
     int baseDamage = 5;
     int damage = baseDamage+rand.nextInt(15);
     return damage;
   }
 
-  public static int move2(){
+  public static int move2()
+  {
     Random rand = new Random();
     int damage = rand.nextInt(25);
     return damage;
@@ -23,7 +26,8 @@ public abstract class College {
 
   public abstract int move3();
   public abstract int move4();
-  public static void main(String[] args){
+  public static void main(String[] args)
+  {
 
 
     //lines 31-34 compile correctly
