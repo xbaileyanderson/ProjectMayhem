@@ -86,11 +86,22 @@ public class ClientHandler implements Runnable{
     }
 
   public void move3Schmid(){
-
+    int healAmount;
+    if (health < 20)
+    {
+      healAmount = 30;
+    }
+    else {
+      healAmount = 10;
+    }
   }
 
-  public void move4Schmid(){
-
+  
+  
+  public void move4Schmid() {
+    // move will eventually be 10 damage then next turn it will do 5 damage for 2 turns on top of whatever other move they do.
+    damage = 10;
+    return damage;
   }
 
   //etc etc for all moves
