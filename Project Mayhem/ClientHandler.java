@@ -110,6 +110,12 @@ public class ClientHandler implements Runnable{
     int damage = baseDamage+rand.nextInt(15);
   }
 
+  //Analyze trend: "Enemy is spending too little on defense"
+  public void move3Argyros(){
+    Random rand = new Random();
+    int baseDamage = 25;
+    int damage = baseDamage+rand.nextInt(15);
+  }
 
 
   public void move4Schmid() {
@@ -147,6 +153,15 @@ public class ClientHandler implements Runnable{
     Random rand = new Random();
     int baseHeal = 20;
     int healAmount = baseHeal+rand.nextInt(30);
+  }
+  
+  //Look for investors:
+  //"Raising money to buy a new weapon"
+  //"Raised just enough to do: " + damage
+  public void move4Argyros() {
+    Random rand = new Random();
+    int baseDamage = 20;
+    int damage = baseDamage+rand.nextInt(50);
   }
 
   //etc etc for all moves
