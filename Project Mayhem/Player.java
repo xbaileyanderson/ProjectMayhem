@@ -21,4 +21,13 @@ public class Player {
   public String getCatchphrase() {
     return this.catchphrase;
   }
+  public int win() {
+    return 1;
+  }
+  public int lose() {
+    return 1;
+  }
+  public int play() {
+    return 1;
+  }
 }

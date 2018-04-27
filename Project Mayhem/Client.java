@@ -15,12 +15,13 @@ public class Client
     {
       String hostname = "localhost";
       int port = 7654;
+      Player player = new Player();
 
       System.out.println("Connecting to server on port " + port);
       Socket connectionSock = new Socket(hostname, port);
       DataOutputStream serverOutput = new DataOutputStream(connectionSock.getOutputStream());
       System.out.println("Connection made.");
-      ClientListener listener = new ClientListener(connectionSock);
+      ClientListener listener = new ClientListener(connectionSock, player);
       Thread theThread = new Thread(listener);
       theThread.start();
       Scanner keyboard = new Scanner(System.in);

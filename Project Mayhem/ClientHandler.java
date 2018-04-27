@@ -16,9 +16,10 @@ import java.net.Socket;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 
-public class ClientHandler implements Runnable {
+public class ClientHandler implements Runnable{
   private Socket connectionSock = null;
   private ArrayList<Socket> socketList;
 
@@ -34,7 +35,9 @@ public class ClientHandler implements Runnable {
   int Health2 = 100;
 
 
-  public ClientHandler(ArrayList<Socket> socketList){
+  ClientHandler(Socket sock, ArrayList<Socket> socketList)
+  {
+    this.connectionSock = sock;
     this.socketList = socketList;
   }
 
@@ -48,37 +51,48 @@ public class ClientHandler implements Runnable {
 
 
   //each college will have a number corresponding to it (collegeClass)
-  private void move(int moveNum, int collegeClass){
-    switch (moveNum) {
+  private void move(int moveNum, int collegeClass)
+  {
+    switch (moveNum)
+    {
       case 1: //method with logic for move1
+
         break;
       case 2: // method with logic for move2
         break;
       case 3: switch (collegeClass)
-                case 1: // method for schmid move3
-                  break;
-                case 2: //method for copa move3
-                  break;
-                //etc etc repeat for move 4 as well
+      {
+        case 1: // method for schmid move3
+          break;
+        case 2: //method for copa move3
+          break;
+        //etc etc repeat for move 4 as well
+      }
     }
   }
 
   //logic for moves
 
-  public void move1(){
-    
-  }
+  /*public void move1()
+    {
+      Random rand = new Random();
+      int damage = 10 + rand.nextInt(10);
+      return damage;
+    }
 
-  public void move2(){
-    
-  }
+  public void move2()
+    {
+      Random rand = new Random();
+      int damage = rand.nextInt(25);
+      return damage;
+    }*/
 
   public void move3Schmid(){
-    
+
   }
 
   public void move4Schmid(){
-    
+
   }
 
   //etc etc for all moves
@@ -90,8 +104,9 @@ public class ClientHandler implements Runnable {
 
 
   public void run() {
+    boolean playing = true;
     try {
-      
+
       player1 = socketList.get(0);
       System.out.println("Player1 connected");
 
@@ -100,7 +115,7 @@ public class ClientHandler implements Runnable {
         player1Input = new BufferedReader(
                 new InputStreamReader(player1.getInputStream()));
         player1Output = new DataOutputStream(player1.getOutputStream());
-        playerXOutput.writeBytes("Welcome to Project Mayhem. you are the first to connect\n"
+        player1Output.writeBytes("Welcome to Project Mayhem. You are the first to connect\n"
                 + "Waiting for other player to connect...\n");
 
         //Player2's user
@@ -112,7 +127,7 @@ public class ClientHandler implements Runnable {
             player2Input = new BufferedReader(
                     new InputStreamReader(player2.getInputStream()));
             player2Output = new DataOutputStream(player2.getOutputStream());
-            player2Output.writeBytes("Welcome to Project Mayhem. you are the second to connect\n");
+            player2Output.writeBytes("Welcome to Project Mayhem. You are the second to connect\n");
             System.out.println("Client 2 connected");
             break;
           }

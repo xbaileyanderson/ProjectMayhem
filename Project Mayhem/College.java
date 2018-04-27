@@ -17,8 +17,7 @@ public abstract class College {
 
   public static int move2(){
     Random rand = new Random();
-    int baseDamage = 0;
-    int damage = baseDamage + rand.nextInt(25);
+    int damage = rand.nextInt(25);
     return damage;
   };
 
