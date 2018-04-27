@@ -96,11 +96,41 @@ public class ClientHandler implements Runnable{
     }
   }
 
+  //name: script change (heal + attack)
+  public void move3Dodge() {
+    int damage;
+    health = health + 20;
+    damage = 20;
+    return damage;
+  }
   
+
   
   public void move4Schmid() {
     // move will eventually be 10 damage then next turn it will do 5 damage for 2 turns on top of whatever other move they do.
     damage = 10;
+    return damage;
+  }
+  
+  //name: That's a wrap (attack)
+  public void move4Dodge() {
+    int damage;
+    int dam;
+    int base = 20;
+    Random rand = new Random();
+    if (health < 10) {
+      dam = rand.nextInt(90);
+    }
+    else if (health < 20) {
+      dam = rand.nextInt(80);
+    }
+    else if (health < 30) {
+      dam = rand.nextInt(70);
+    }
+    else {
+      dam = 0;
+    }
+    damage = base + dam;
     return damage;
   }
 
