@@ -75,14 +75,12 @@ public class ClientHandler implements Runnable{
     {
       Random rand = new Random();
       int damage = 5 + rand.nextInt(10);
-      return damage;
     }
 
   public void move2()
     {
       Random rand = new Random();
       int damage = rand.nextInt(25);
-      return damage;
     }
 
   public void move3Schmid(){
@@ -101,15 +99,21 @@ public class ClientHandler implements Runnable{
     int damage;
     health = health + 20;
     damage = 20;
-    return damage;
   }
   
+  //Psycho-analysis. "Poke at enemy's insecurities"
+  //
+  public void move3Crean(){
+    Random rand = new Random();
+    int baseDamage = 20;
+    int damage = baseDamage+rand.nextInt(15);
+  }
 
+  
   
   public void move4Schmid() {
     // move will eventually be 10 damage then next turn it will do 5 damage for 2 turns on top of whatever other move they do.
     damage = 10;
-    return damage;
   }
   
   //name: That's a wrap (attack)
@@ -131,7 +135,16 @@ public class ClientHandler implements Runnable{
       dam = 0;
     }
     damage = base + dam;
-    return damage;
+  }
+  
+  //3 potential names
+  //Therapeutic massage
+  //Pep-talk
+  //Therapy session
+  public void move4Crean() {
+    Random rand = new Random();
+    int baseHeal = 20;
+    int healAmount = baseHeal+rand.nextInt(30);
   }
 
   //etc etc for all moves
