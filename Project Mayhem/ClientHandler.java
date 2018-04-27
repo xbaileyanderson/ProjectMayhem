@@ -71,10 +71,10 @@ public class ClientHandler implements Runnable{
 
   //logic for moves
 
-  /*public void move1()
+  public void move1()
     {
       Random rand = new Random();
-      int damage = 10 + rand.nextInt(10);
+      int damage = 5 + rand.nextInt(10);
       return damage;
     }
 
@@ -83,7 +83,7 @@ public class ClientHandler implements Runnable{
       Random rand = new Random();
       int damage = rand.nextInt(25);
       return damage;
-    }*/
+    }
 
   public void move3Schmid(){
 
