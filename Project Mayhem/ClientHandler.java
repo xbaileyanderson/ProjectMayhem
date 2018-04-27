@@ -31,6 +31,7 @@ public class ClientHandler implements Runnable{
   private DataOutputStream player2Output;
   int Health1 = 100;
   int Health2 = 100;
+  int health = 100;
 
 
   ClientHandler(Socket sock, ArrayList<Socket> socketList)
@@ -100,7 +101,7 @@ public class ClientHandler implements Runnable{
     health = health + 20;
     damage = 20;
   }
-  
+
   //Psycho-analysis. "Poke at enemy's insecurities"
   //
   public void move3Crean(){
@@ -109,13 +110,14 @@ public class ClientHandler implements Runnable{
     int damage = baseDamage+rand.nextInt(15);
   }
 
-  
-  
+
+
   public void move4Schmid() {
+    int damage;
     // move will eventually be 10 damage then next turn it will do 5 damage for 2 turns on top of whatever other move they do.
     damage = 10;
   }
-  
+
   //name: That's a wrap (attack)
   public void move4Dodge() {
     int damage;
@@ -136,7 +138,7 @@ public class ClientHandler implements Runnable{
     }
     damage = base + dam;
   }
-  
+
   //3 potential names
   //Therapeutic massage
   //Pep-talk
