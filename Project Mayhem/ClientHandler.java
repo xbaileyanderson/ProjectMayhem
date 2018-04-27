@@ -117,6 +117,13 @@ public class ClientHandler implements Runnable{
     int damage = baseDamage+rand.nextInt(15);
   }
 
+  //This move will eventually turn into a move that skips the other players turn and adds 10 health to yourself
+  public void move3COPA()
+  {
+    //sends to clienthandler to skip next player and return back to this player
+    int addsHealth = health + 10;
+  }
+ 
 
   public void move4Schmid() {
     int damage;
@@ -162,6 +169,14 @@ public class ClientHandler implements Runnable{
     Random rand = new Random();
     int baseDamage = 20;
     int damage = baseDamage+rand.nextInt(50);
+  }
+  
+  //This move will eventually block the opponant's attack, for now as a place holder until we get the clienthandler
+  //working I am making it an attack
+  public void move4COPA()
+  {
+    Random rand = new Random();
+    int damage = 5 + rand.nextInt(50);
   }
 
   //etc etc for all moves
