@@ -37,7 +37,7 @@ public class Main extends Application {
 
 
         Label classLabel = new Label("Select a college");
-        ChoiceBox collegeChoice = new ChoiceBox(FXCollections.observableArrayList("Argyros", "College of the Performing Arts", "Crean",
+        ChoiceBox<String> collegeChoice = new ChoiceBox<>(FXCollections.observableArrayList("Argyros", "College of the Performing Arts", "Crean",
                 "Dodge", "Schmid"));
         gamegui.add(collegeChoice, 1, 1);
         gamegui.add(classLabel, 0, 1);
