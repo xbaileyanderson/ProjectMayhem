@@ -29,15 +29,17 @@ public class ClientHandler implements Runnable{
   private DataOutputStream player1Output;
   private BufferedReader player2Input;
   private DataOutputStream player2Output;
-  int Health1 = 100;
-  int Health2 = 100;
-  int health = 100;
+  int health1;
+  int health2;
+
 
 
   ClientHandler(Socket sock, ArrayList<Socket> socketList)
   {
     this.connectionSock = sock;
     this.socketList = socketList;
+    health1 = 100;
+    health2 = 100;
   }
 
   //method that creates player 1
@@ -50,38 +52,76 @@ public class ClientHandler implements Runnable{
 
 
   //each college will have a number corresponding to it (collegeClass)
-  private void move(int moveNum, int collegeClass)
+  //int player to determine which player (1 or 2)
+  public int move(int moveNum, int collegeClass int playerInt)
   {
+    int d;
+
+    //
+    // can simplify switch to be like: move4schmid is moveNum = 8 and just have one switch statement
+    // instead of having to have "int collegeClass" as a parameter
+    //
     switch (moveNum)
     {
       case 1: //method with logic for move1
-
+        d = move1();
         break;
       case 2: // method with logic for move2
+        d = move2();
         break;
       case 3: switch (collegeClass)
       {
-        case 1: // method for schmid move3
+        case 1:
+          move3Schmid();
           break;
-        case 2: //method for copa move3
+        case 2:
+          move3COPA();
           break;
-        //etc etc repeat for move 4 as well
+        case 3:
+          move3Dodge();
+          break;
+        case 4:
+          move3Crean();
+          break;
+        case 5:
+          move3Argyros();
+          break;
       }
+      case 4: switch (collegeClass)
+      {
+        case 1:
+          move4Schmid();
+          break;
+        case 2:
+          move4COPA();
+          break;
+        case 3:
+          move4Dodge();
+          break;
+        case 4:
+          move4Crean();
+          break;
+        case 5:
+          move4Argyros();
+          break;
     }
+    return d;
   }
 
   //logic for moves
 
-  public void move1()
+  public int move1()
     {
       Random rand = new Random();
       int damage = 5 + rand.nextInt(10);
+      return damage;
     }
 
-  public void move2()
+  public int move2()
     {
       Random rand = new Random();
       int damage = rand.nextInt(25);
+      return damage;
     }
 
   public void move3Schmid(){
@@ -118,12 +158,13 @@ public class ClientHandler implements Runnable{
   }
 
   //This move will eventually turn into a move that skips the other players turn and adds 10 health to yourself
+  //Musical Enchantment
   public void move3COPA()
   {
     //sends to clienthandler to skip next player and return back to this player
     int addsHealth = health + 10;
   }
- 
+
 
   public void move4Schmid() {
     int damage;
@@ -161,7 +202,7 @@ public class ClientHandler implements Runnable{
     int baseHeal = 20;
     int healAmount = baseHeal+rand.nextInt(30);
   }
-  
+
   //Look for investors:
   //"Raising money to buy a new weapon"
   //"Raised just enough to do: " + damage
@@ -170,7 +211,7 @@ public class ClientHandler implements Runnable{
     int baseDamage = 20;
     int damage = baseDamage+rand.nextInt(50);
   }
-  
+
   //This move will eventually block the opponant's attack, for now as a place holder until we get the clienthandler
   //working I am making it an attack
   public void move4COPA()
@@ -181,8 +222,29 @@ public class ClientHandler implements Runnable{
 
   //etc etc for all moves
 
-  private void clientTurn(Socket client, BufferedReader clientIn, DataOutputStream clientOut) {
+  private void clientTurn(Socket client, BufferedReader clientIn, DataOutputStream clientOut, int moveNum, int collegeClass) {
     //method that determines what happens each turn (win/lose etc.)
+    String play = "PLAY\n";
+    clientOut.writeBytes(play);
+    // send opponent health to player
+    //
+    // receive move selection from player
+    //receive whether move is done by player 1 or player 2
+    int playerNum = 0;
+    if(client == socketList.get(0)) {
+               playerNum = 0;
+             }
+             else {
+               playerNum = 1;
+             }
+    int damage = 0;
+    damage = move(moveNum, collegeClass, playerNum);
+    if (playerNum == 0){
+      health2 = health2 - damage;
+    }
+    else {
+      health1 = health1 - damage;
+    }
   }
 
 
