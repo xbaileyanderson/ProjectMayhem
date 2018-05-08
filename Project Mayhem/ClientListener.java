@@ -18,6 +18,7 @@ import java.util.Scanner;
 
 import static javafx.scene.input.KeyCode.PLAY;
 
+
 public class ClientListener implements Runnable {
   private Socket connectionSock = null;
   private Player player = null;
