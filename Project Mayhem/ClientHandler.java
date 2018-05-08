@@ -34,9 +34,9 @@ public class ClientHandler implements Runnable{
 
 
 
-  ClientHandler(Socket sock, ArrayList<Socket> socketList)
+  ClientHandler(ArrayList<Socket> socketList)
   {
-    this.connectionSock = sock;
+    //this.connectionSock = sock;
     this.socketList = socketList;
     health1 = 100;
     health2 = 100;
@@ -53,9 +53,8 @@ public class ClientHandler implements Runnable{
 
   //each college will have a number corresponding to it (collegeClass)
   //int player to determine which player (1 or 2)
-  public int move(int moveNum, int collegeClass int playerInt)
-  {
-    int d;
+  public int move(int moveNum, int collegeClass, int playerInt) {
+    int d = 0;
 
     //
     // can simplify switch to be like: move4schmid is moveNum = 8 and just have one switch statement
@@ -105,8 +104,9 @@ public class ClientHandler implements Runnable{
           move4Argyros();
           break;
     }
-    return d;
   }
+  return d;
+}
 
   //logic for moves
 
@@ -125,20 +125,20 @@ public class ClientHandler implements Runnable{
     }
 
   public void move3Schmid(){
-    int healAmount;
+    /*int healAmount;
     if (health < 20)
     {
       healAmount = 30;
     }
     else {
       healAmount = 10;
-    }
+    } */
   }
 
   //name: script change (heal + attack)
   public void move3Dodge() {
     int damage;
-    health = health + 20;
+  //  health = health + 20;
     damage = 20;
   }
 
@@ -162,7 +162,7 @@ public class ClientHandler implements Runnable{
   public void move3COPA()
   {
     //sends to clienthandler to skip next player and return back to this player
-    int addsHealth = health + 10;
+    //int addsHealth = health + 10;
   }
 
 
@@ -178,6 +178,7 @@ public class ClientHandler implements Runnable{
     int dam;
     int base = 20;
     Random rand = new Random();
+    /*
     if (health < 10) {
       dam = rand.nextInt(90);
     }
@@ -190,6 +191,8 @@ public class ClientHandler implements Runnable{
     else {
       dam = 0;
     }
+    */
+    dam = 10;
     damage = base + dam;
   }
 
@@ -222,29 +225,67 @@ public class ClientHandler implements Runnable{
 
   //etc etc for all moves
 
+
+  private boolean CheckIfWin(int pNum) {
+    if (pNum == 0) {
+      if (health2 <= 0) {
+        return true;
+      }
+    }
+    else if (pNum == 1) {
+      if (health1 <= 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   private void clientTurn(Socket client, BufferedReader clientIn, DataOutputStream clientOut, int moveNum, int collegeClass) {
     //method that determines what happens each turn (win/lose etc.)
-    String play = "PLAY\n";
-    clientOut.writeBytes(play);
-    // send opponent health to player
-    //
-    // receive move selection from player
-    //receive whether move is done by player 1 or player 2
-    int playerNum = 0;
-    if(client == socketList.get(0)) {
-               playerNum = 0;
-             }
-             else {
-               playerNum = 1;
-             }
-    int damage = 0;
-    damage = move(moveNum, collegeClass, playerNum);
-    if (playerNum == 0){
-      health2 = health2 - damage;
+    try {
+      String play = "PLAY\n";
+      clientOut.writeBytes(play);
+      // send opponent health to player
+      //
+      // receive move selection from player
+      //receive whether move is done by player 1 or player 2
+      int playerNum = 0; //remove later
+      String clientMove = clientIn.readLine();
+      moveNum = Integer.parseInt(clientMove);
+      if(client == socketList.get(0)) {
+                 playerNum = 0;
+               }
+               else {
+                 playerNum = 1;
+               }
+      int damage = 0;
+      damage = move(moveNum, collegeClass, playerNum);
+      if (playerNum == 0){
+        health2 = health2 - damage;
+        System.out.println(health2);
+      }
+      else {
+        health1 = health1 - damage;
+        System.out.println(health1);
+      }
+      //check if win
+      if (CheckIfWin(playerNum)) {
+        if (playerNum == 0){
+          player1Output.writeBytes("WIN\n");
+          player2Output.writeBytes("LOSE\n");
+          System.out.println("GAME OVER");
+        }
+        else if (playerNum == 1){
+          player2Output.writeBytes("WIN\n");
+          player1Output.writeBytes("LOSE\n");
+          System.out.println("GAME OVER");
+      }
     }
-    else {
-      health1 = health1 - damage;
+  }
+    catch (Exception e) {
+      System.out.println(e.getMessage());
     }
+
   }
 
 
@@ -283,10 +324,10 @@ public class ClientHandler implements Runnable{
         while (true) {
           if (!playing)
             break;
-          clientTurn(player1, player1Input, player1Output);
+          clientTurn(player1, player1Input, player1Output, 0, 0);
           if (!playing)
             break;
-          clientTurn(player2, player2Input, player2Output);
+          clientTurn(player2, player2Input, player2Output, 1, 1);
         }
       } catch (Exception e) {
 
