@@ -134,22 +134,32 @@ public class ClientHandler implements Runnable{
       return damage;
     }
 
-  public void move3Schmid(){
-    /*int healAmount;
-    if (health < 20)
+    public Move move3Schmid()
     {
-      healAmount = 30;
+    Move m = new Move(0, 0, false);
+    int healthSave;
+      if (health1 < 20 || health2 < 20)
+      {
+        healthSave = 30;
+      }
+      else 
+      {
+        healthSave = 10;
+      } 
+      m.heal = healthSave;
+      System.out.println("this is schmid");
+      return m;
     }
-    else {
-      healAmount = 10;
-    } */
-  }
 
   //name: script change (heal + attack)
-  public void move3Dodge() {
+  public Move move3Dodge() 
+  {
+    Move m = new Move(0, 0, false);
     int damage;
-  //  health = health + 20;
-    damage = 20;
+    damage = 20 + health2;
+    m.damage = damage;
+    System.out.println("this is dodge");
+    return m;
   }
 
   //Psycho-analysis. "Poke at enemy's insecurities"
