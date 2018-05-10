@@ -52,7 +52,7 @@ public class ClientHandler implements Runnable{
 
   //each college will have a number corresponding to it (collegeClass)
   //int player to determine which player (1 or 2)
-    public Move move(int moveNum, int collegeClass, int playerInt) {
+    public Move move(int moveNum) {
     int d = 0;
     int h = 0;
     boolean s = false;
@@ -173,7 +173,7 @@ switch (moveNum)
     return m;
   }
 
-  //Musical Enchantment - heals base of 5 plus rand 10 and attacks w random 15 
+  //Musical Enchantment - heals base of 5 plus rand 10 and attacks w random 15
   public Move move3COPA()
   {
   Move m = new Move(0, 0, false);
@@ -289,7 +289,7 @@ switch (moveNum)
                else {
                  playerNum = 1;
                }
-      
+
       int damage = 0;
       int heal = 0;
       Move m = move(moveNum);
@@ -307,7 +307,7 @@ switch (moveNum)
         System.out.println("Player 1 health: " + health1);
         System.out.println("Player 2 health: " + health2);
       }
-      
+
       //check if win
       if (CheckIfWin(playerNum)) {
         if (playerNum == 0){
