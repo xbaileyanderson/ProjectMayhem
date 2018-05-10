@@ -33,7 +33,6 @@ public class ClientHandler implements Runnable{
   int health2;
 
 
-
   ClientHandler(ArrayList<Socket> socketList)
   {
     //this.connectionSock = sock;
