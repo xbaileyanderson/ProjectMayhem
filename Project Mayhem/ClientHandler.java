@@ -53,8 +53,12 @@ public class ClientHandler implements Runnable{
 
   //each college will have a number corresponding to it (collegeClass)
   //int player to determine which player (1 or 2)
-  public int move(int moveNum, int collegeClass, int playerInt) {
+    public Move move(int moveNum, int collegeClass, int playerInt) {
     int d = 0;
+    int h = 0;
+    boolean s = false;
+    Move m = new Move(0,0,false);
+    
 
     //
     // can simplify switch to be like: move4schmid is moveNum = 8 and just have one switch statement
@@ -63,12 +67,18 @@ public class ClientHandler implements Runnable{
     switch (moveNum)
     {
       case 1: //method with logic for move1
-        d = move1();
+        m.damage = move1().damage;
         break;
       case 2: // method with logic for move2
-        d = move2();
+        m.damage = move2().damage;
         break;
-      case 3: switch (collegeClass)
+      case 3:
+        m.damage = move3Schmid().damage;
+        m.heal = move3Schmid.heal;
+        
+
+      
+       switch (collegeClass)
       {
         case 1:
           move3Schmid();
@@ -89,7 +99,7 @@ public class ClientHandler implements Runnable{
       case 4: switch (collegeClass)
       {
         case 1:
-          move4Schmid();
+          m.d = move4Schmid().damage;
           break;
         case 2:
           move4COPA();
@@ -105,7 +115,7 @@ public class ClientHandler implements Runnable{
           break;
     }
   }
-  return d;
+  return m;
 }
 
   //logic for moves
