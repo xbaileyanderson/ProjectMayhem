@@ -64,7 +64,7 @@ public class ClientHandler implements Runnable{
     // can simplify switch to be like: move4schmid is moveNum = 8 and just have one switch statement
     // instead of having to have "int collegeClass" as a parameter
     //
-    switch (moveNum)
+switch (moveNum)
     {
       case 1: //method with logic for move1
         m = move1();
@@ -75,45 +75,34 @@ public class ClientHandler implements Runnable{
       case 3:
         m = move3Schmid();
         break;
-
-
-       switch (collegeClass)
-      {
-        case 1:
-          move3Schmid();
-          break;
-        case 2:
-          move3COPA();
-          break;
-        case 3:
-          move3Dodge();
-          break;
-        case 4:
-          move3Crean();
-          break;
-        case 5:
-          move3Argyros();
-          break;
-      }
-      case 4: switch (collegeClass)
-      {
-        case 1:
-          m.d = move4Schmid().damage;
-          break;
-        case 2:
-          move4COPA();
-          break;
-        case 3:
-          move4Dodge();
-          break;
-        case 4:
-          move4Crean();
-          break;
-        case 5:
-          move4Argyros();
-          break;
+      case 4:
+        m = move3COPA();
+        break;
+      case 5:
+        m = move3Dodge();
+        break;
+      case 6:
+        m = move3Crean();
+        break;
+      case 7:
+        m = move3Argyros();
+        break;
+      case 8:
+        m = move4Schmid();
+        break;
+      case 9:
+        m = move4COPA();
+        break;
+      case 10:
+        m = move4Dodge();
+        break;
+      case 11:
+        m = move4Crean();
+        break;
+      case 12:
+        m = move4Argyros();
+        break;
     }
-  }
   return m;
 }
 
@@ -137,21 +126,16 @@ public class ClientHandler implements Runnable{
       return m;
     }
 
+    //heals base 5 plus rand 15
     public Move move3Schmid()
     {
     Move m = new Move(0, 0, false);
-    int healthSave;
-      if (health1 < 20 || health2 < 20)
-      {
-        healthSave = 30;
-      }
-      else
-      {
-        healthSave = 10;
-      }
-      m.heal = healthSave;
-      System.out.println("this is schmid");
-      return m;
+    Random rand = new Random();
+    int healthSave = 5;
+    int addsHealth = healthSave + rand.nextInt(15);
+    m.heal = addsHealth;
+    System.out.println("this is schmid");
+    return m;
     }
 
   //name: script change (heal + attack)
@@ -167,25 +151,41 @@ public class ClientHandler implements Runnable{
 
   //Psycho-analysis. "Poke at enemy's insecurities"
   //
-  public void move3Crean(){
+  public Move move3Crean()
+  {
+    Move m = new Move(0, 0, false);
     Random rand = new Random();
     int baseDamage = 20;
     int damage = baseDamage+rand.nextInt(15);
+    m.damage = damage;
+    System.out.println("this is crean");
+    return m;
   }
 
   //Analyze trend: "Enemy is spending too little on defense"
-  public void move3Argyros(){
+  public Move move3Argyros()
+  {
+    Move m = new Move(0, 0, false);
     Random rand = new Random();
     int baseDamage = 25;
     int damage = baseDamage+rand.nextInt(15);
+    m.damage = damage;
+    System.out.println("this is Argyros");
+    return m;
   }
 
-  //This move will eventually turn into a move that skips the other players turn and adds 10 health to yourself
-  //Musical Enchantment
-  public void move3COPA()
+  //Musical Enchantment - heals base of 5 plus rand 10 and attacks w random 15 
+  public Move move3COPA()
   {
-    //sends to clienthandler to skip next player and return back to this player
-    //int addsHealth = health + 10;
+  Move m = new Move(0, 0, false);
+  Random rand = new Random();
+  int healthSave = 5;
+  int damage = rand.nextInt(15);
+  int addsHealth = healthSave + rand.nextInt(10);
+  m.heal = addsHealth;
+  m.damage = damage;
+  System.out.println("this is schmid");
+  return m;
   }
 
 
