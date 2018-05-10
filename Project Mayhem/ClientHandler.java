@@ -58,7 +58,7 @@ public class ClientHandler implements Runnable{
     int h = 0;
     boolean s = false;
     Move m = new Move(0,0,false);
-    
+
 
     //
     // can simplify switch to be like: move4schmid is moveNum = 8 and just have one switch statement
@@ -67,17 +67,16 @@ public class ClientHandler implements Runnable{
     switch (moveNum)
     {
       case 1: //method with logic for move1
-        m.damage = move1().damage;
+        m = move1();
         break;
       case 2: // method with logic for move2
-        m.damage = move2().damage;
+        m = move2();
         break;
       case 3:
-        m.damage = move3Schmid().damage;
-        m.heal = move3Schmid.heal;
-        
+        m = move3Schmid();
+        break;
 
-      
+
        switch (collegeClass)
       {
         case 1:
@@ -120,18 +119,22 @@ public class ClientHandler implements Runnable{
 
   //logic for moves
 
-  public int move1()
+  public Move move1()
     {
+      Move m = new Move(0,0,false);
       Random rand = new Random();
       int damage = 5 + rand.nextInt(10);
-      return damage;
+      m.damage = damage;
+      return m;
     }
 
-  public int move2()
+  public Move move2()
     {
+      Move m = new Move(0,0,false);
       Random rand = new Random();
       int damage = rand.nextInt(25);
-      return damage;
+      m.damage = damage;
+      return m;
     }
 
     public Move move3Schmid()
@@ -142,17 +145,17 @@ public class ClientHandler implements Runnable{
       {
         healthSave = 30;
       }
-      else 
+      else
       {
         healthSave = 10;
-      } 
+      }
       m.heal = healthSave;
       System.out.println("this is schmid");
       return m;
     }
 
   //name: script change (heal + attack)
-  public Move move3Dodge() 
+  public Move move3Dodge()
   {
     Move m = new Move(0, 0, false);
     int damage;
@@ -186,10 +189,19 @@ public class ClientHandler implements Runnable{
   }
 
 
-  public void move4Schmid() {
+  public Move move4Schmid() {
+    Move m = new Move(0,0,false);
+    Random rand = new Random();
+    int flip = rand.nextInt(1);
     int damage;
-    // move will eventually be 10 damage then next turn it will do 5 damage for 2 turns on top of whatever other move they do.
-    damage = 10;
+    if (flip == 0) {
+      damage = 20;
+    }
+    else {
+      damage = -20;
+    }
+    m.damage = damage;
+    return m;
   }
 
   //name: That's a wrap (attack)
