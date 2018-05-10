@@ -204,54 +204,54 @@ switch (moveNum)
   }
 
   //name: That's a wrap (attack)
-  public void move4Dodge() {
+  public Move move4Dodge() {
+    Move m = new Move(0,0,false);
     int damage;
     int dam;
     int base = 20;
     Random rand = new Random();
-    /*
-    if (health < 10) {
-      dam = rand.nextInt(90);
-    }
-    else if (health < 20) {
-      dam = rand.nextInt(80);
-    }
-    else if (health < 30) {
-      dam = rand.nextInt(70);
-    }
-    else {
-      dam = 0;
-    }
-    */
     dam = 10;
+    base = rand.nextInt(30);
     damage = base + dam;
+    return m;
   }
 
   //3 potential names
   //Therapeutic massage
   //Pep-talk
   //Therapy session
-  public void move4Crean() {
+  public Move move4Crean() {
+    Move m = new Move(0,0,false);
     Random rand = new Random();
     int baseHeal = 20;
     int healAmount = baseHeal+rand.nextInt(30);
+    m.heal = healAmount;
+    return m;
   }
 
   //Look for investors:
   //"Raising money to buy a new weapon"
   //"Raised just enough to do: " + damage
-  public void move4Argyros() {
+  public Move move4Argyros() {
+    Move m = new Move(0,0,false);
     Random rand = new Random();
     int baseDamage = 20;
     int damage = baseDamage+rand.nextInt(50);
+    m.damage = damage;
+    return m;
   }
 
   //This move will eventually block the opponant's attack, for now as a place holder until we get the clienthandler
   //working I am making it an attack
-  public void move4COPA()
+  public Move move4COPA()
   {
+    Move m = new Move(0,0,false);
     Random rand = new Random();
     int damage = 5 + rand.nextInt(50);
+    int healing = 10;
+    m.damage = damage;
+    m.heal = healing;
+    return m;
   }
 
   //etc etc for all moves
@@ -289,16 +289,25 @@ switch (moveNum)
                else {
                  playerNum = 1;
                }
+      
       int damage = 0;
-      damage = move(moveNum, collegeClass, playerNum);
+      int heal = 0;
+      Move m = move(moveNum);
+      damage = m.damage;
+      heal = m.heal;
       if (playerNum == 0){
         health2 = health2 - damage;
-        System.out.println(health2);
+        health1 = health1 + heal;
+        System.out.println("Player 1 health: " + health1);
+        System.out.println("Player 2 health: " + health2);
       }
       else {
+        health2 = health2 + heal;
         health1 = health1 - damage;
-        System.out.println(health1);
+        System.out.println("Player 1 health: " + health1);
+        System.out.println("Player 2 health: " + health2);
       }
+      
       //check if win
       if (CheckIfWin(playerNum)) {
         if (playerNum == 0){
