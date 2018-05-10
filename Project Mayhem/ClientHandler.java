@@ -141,10 +141,8 @@ switch (moveNum)
   public Move move3Dodge()
   {
     Move m = new Move(0, 0, false);
-    int damage;
-    damage = 20 + health2;
+    int damage = 20;
     m.damage = damage;
-    System.out.println("this is dodge");
     return m;
   }
 
@@ -157,7 +155,6 @@ switch (moveNum)
     int baseDamage = 20;
     int damage = baseDamage+rand.nextInt(15);
     m.damage = damage;
-    System.out.println("this is crean");
     return m;
   }
 
@@ -169,7 +166,6 @@ switch (moveNum)
     int baseDamage = 25;
     int damage = baseDamage+rand.nextInt(15);
     m.damage = damage;
-    System.out.println("this is Argyros");
     return m;
   }
 
@@ -183,7 +179,6 @@ switch (moveNum)
   int addsHealth = healthSave + rand.nextInt(10);
   m.heal = addsHealth;
   m.damage = damage;
-  System.out.println("this is schmid");
   return m;
   }
 
