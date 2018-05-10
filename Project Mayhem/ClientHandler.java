@@ -9,8 +9,6 @@
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -135,14 +133,6 @@ public class ClientHandler implements Runnable{
     else {
       healAmount = 10;
     } */
-    if (health1 < 20)
-    {
-      healAmount = 30;
-    }
-    else {
-      healAmount = 10;
-    }
-    health1+=healAmount;
   }
 
   //name: script change (heal + attack)
@@ -268,20 +258,16 @@ public class ClientHandler implements Runnable{
                else {
                  playerNum = 1;
                }
-      if (moveNum == 1 || moveNum == 2) {
-        int damage = 0;
-        damage = move(moveNum, collegeClass, playerNum);
-        if (playerNum == 0){
-          health2 = health2 - damage;
-          System.out.println(health2);
-        }
-        else {
-          health1 = health1 - damage;
-          System.out.println(health1);
-        }
+      int damage = 0;
+      damage = move(moveNum, collegeClass, playerNum);
+      if (playerNum == 0){
+        health2 = health2 - damage;
+        System.out.println(health2);
       }
-      else if (moveNum == 3)
-
+      else {
+        health1 = health1 - damage;
+        System.out.println(health1);
+      }
       //check if win
       if (CheckIfWin(playerNum)) {
         if (playerNum == 0){
@@ -338,7 +324,7 @@ public class ClientHandler implements Runnable{
         while (true) {
           if (!playing)
             break;
-          clientTurn(player1, player1Input, player1Output, 0, 1);
+          clientTurn(player1, player1Input, player1Output, 0, 0);
           if (!playing)
             break;
           clientTurn(player2, player2Input, player2Output, 1, 1);
