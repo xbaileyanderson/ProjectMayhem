@@ -39,6 +39,7 @@ public class Player {
 				}
 
 			}
+	}
   }
 
 GUI g = new GUI();
