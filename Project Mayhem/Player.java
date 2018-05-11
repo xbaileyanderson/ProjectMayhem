@@ -22,7 +22,8 @@ import java.net.Socket;
 import java.util.Scanner;
 import java.awt.EventQueue;
 import java.util.concurrent.TimeUnit;
-
+import javax.swing.JTextPane;
+import javax.swing.JOptionPane;
 
 public class Player {
   public static void main(String[] args) {
@@ -41,6 +42,31 @@ public class Player {
 
 			}
   });
+		String message = "Hello! Welcome to Project Mayhem, your Chapman Student fightclub.\n"
+				+ "We pit two players against each other. Each player starts with 100 health\n"
+				+ "and the fight ends when one of your health bars reaches zero.\n\n"
+				+ "On your right hand side are a list of fighting moves!\n"
+				+ "You have two basic attacks. Basic Attack 1 does 5 damage + a random amount of damage\n"
+				+ "between 1 and 10. Basic attack 2 does a random amount of damage between 1 and 25.\n"
+				+ "You also have two special moves called move 3 and move 4.\n"
+				+ "Those special moves are college specific! \n\n"
+				+ "On your left hand side, you will see a list of five colleges to choose from. \n"
+				+ "Each college's special skills have different effects. These effects are:\n\n"
+				+ "Argyros - Analyze trend: Deal 25 damage + an amount between 1 and 15.\n"
+				+ "Argyros - Seal the Deal: Deal 30 damage + an amount between 1 and 5.\n"
+				+ "COPA - Musical Enchantment: Heal for 5 + an amount between 1 and 10. Also deal 1-15 damage.\n"
+				+ "COPA - Power Drums: Deal 5 damage + an amount between 1 and 50. Also heal for 10.\n"
+				+ "Crean - Psycho-Analysis: Deal 20 damage + an amount between 1 and 15.\n"
+				+ "Crean - Therapy Session: Heal for 20 + an amount between 1 and 30.\n"
+				+ "Dodge - Script Change: deal 20 damage.\n"
+				+ "Dodge - Action!: Deal 10 damage + an amount between 1 and 30.\n"
+				+ "Schmid - Caffeine Bender: Heal for 5 + an amount between 1 and 15.\n"
+				+ "Schmid - DDOS Attack: You have a 50-50 chance of dealing 20 damage or healing the enemy for 20 damage!\n\n"
+				+ "Select wisely! Hint: COPA is the overpowered pick (until you graduate)\n"
+				+ "\nLook at your console/terminal to see messages from the server. You will be notified\n"
+				+ "when it is your turn. You will see live updates of your and your opponent's health.\n"
+				+ "You will also be notified of when one player wins and the other loses!"; //used in constructor
+		JOptionPane.showMessageDialog(null, message, "Instructions", JOptionPane.INFORMATION_MESSAGE);
 }
 
   private String hostname;
