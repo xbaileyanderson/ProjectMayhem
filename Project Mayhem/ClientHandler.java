@@ -107,6 +107,7 @@ switch (moveNum)
 
   //logic for moves
 
+  //5 + random number 0-10, damage dealt
   public Move move1()
     {
       Move m = new Move(0,0,false);
@@ -116,6 +117,7 @@ switch (moveNum)
       return m;
     }
 
+  //random number between 0-25, damage dealt
   public Move move2()
     {
       Move m = new Move(0,0,false);
@@ -126,6 +128,7 @@ switch (moveNum)
     }
 
     //Caffeine Bender
+    //adds 5 health plus a random number from 0-15
     public Move move3Schmid()
     {
     Move m = new Move(0, 0, false);
@@ -137,6 +140,7 @@ switch (moveNum)
     }
 
   //name: script change (heal + attack)
+  //damage dealt is 20
   public Move move3Dodge()
   {
     Move m = new Move(0, 0, false);
@@ -146,7 +150,7 @@ switch (moveNum)
   }
 
   //Psycho-analysis. "Poke at enemy's insecurities"
-  //
+  //damage of 20 plus random num 0-15, damage dealt
   public Move move3Crean()
   {
     Move m = new Move(0, 0, false);
@@ -158,6 +162,7 @@ switch (moveNum)
   }
 
   //Analyze trend: "Enemy is spending too little on defense"
+  //damage 25 plus random num between 0-15, damage dealt
   public Move move3Argyros()
   {
     Move m = new Move(0, 0, false);
@@ -182,6 +187,7 @@ switch (moveNum)
   }
 
 //DDOS Attack
+//gives a 50/50 percent chance that you are either healed or enemy is healed
   public Move move4Schmid() {
     Move m = new Move(0,0,false);
     Random rand = new Random();
@@ -268,10 +274,9 @@ switch (moveNum)
       String play = "PLAY\n";
       clientOut.writeBytes(play);
       // send opponent health to player
-      //
       // receive move selection from player
       //receive whether move is done by player 1 or player 2
-      int playerNum = 0; //remove later
+      int playerNum = 0;
       String clientMove = clientIn.readLine();
       moveNum = Integer.parseInt(clientMove);
       if(client == socketList.get(0)) {
@@ -337,6 +342,7 @@ switch (moveNum)
                 + "Waiting for other player to connect...\n");
 
         //Player2's user
+        //shows the health score of each player in each player's terminal
         while (true) {
           if (socketList.size() == 2) {
             //Init second user and send beginning message
@@ -371,3 +377,4 @@ switch (moveNum)
     }
   }
 } // ClientHandler for MtServer.java
+
