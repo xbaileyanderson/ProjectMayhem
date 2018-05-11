@@ -23,6 +23,8 @@ import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import java.util.Scanner;
+
 public class GUI extends JFrame {
 
 	private JPanel contentPane; //contains everything
@@ -40,6 +42,11 @@ public class GUI extends JFrame {
 	private String tempMove4;
 	private int move3Out = 3;
 	private int move4Out = 4;
+	private Scanner keyboard = new Scanner(System.in);
+
+	public int moveNum;
+
+
 
 	/**
 	 * Launch the application.
@@ -84,11 +91,15 @@ public class GUI extends JFrame {
 		panel_1.setBounds(240, 6, 204, 137);
 		contentPane.add(panel_1);
 
+
+		//Move buttons below
+
+
 		btnMove_1 = new JButton("Basic Attack 1");//move1
 		btnMove_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println(1);
+				moveNum = 1;
 			}
 		});
 		panel_1.add(btnMove_1);//move 1
@@ -97,7 +108,7 @@ public class GUI extends JFrame {
 		btnMove_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println(2);
+				moveNum = 2;
 			}
 		});
 		panel_1.add(btnMove_2);//move2
@@ -107,7 +118,7 @@ public class GUI extends JFrame {
 		btnMove_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println(move3Out);
+				moveNum = move3Out;
 			}
 		});
 		panel_1.add(btnMove_3);
@@ -117,10 +128,11 @@ public class GUI extends JFrame {
 		btnMove_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println(move4Out);
+				moveNum = move4Out;
 			}
 		});
 		panel_1.add(btnMove_4);
+
 
 		JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
