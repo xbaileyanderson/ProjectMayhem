@@ -1,21 +1,3 @@
-/**
- * MTClient.java
- *
- * This program implements a simple multithreaded chat client.  It connects to the
- * server (assumed to be localhost on port 7654) and starts two threads:
- * one for listening for data sent from the server, and another that waits
- * for the user to type something in that will be sent to the server.
- * Anything sent to the server is broadcast to all clients.
- *
- * The MTClient uses a ClientListener whose code is in a separate file.
- * The ClientListener runs in a separate thread, recieves messages form the server,
- * and displays them on the screen.
- *
- * Data received is sent to the output screen, so it is possible that as
- * a user is typing in information a message from the server will be
- * inserted.
- *
- */
 
 import java.io.*;
 import java.net.Socket;
@@ -120,32 +102,17 @@ public class Player {
       FileOutputStream fos = new FileOutputStream(fout);
 
       BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-
         bw.write("20");
         bw.close();
-
-
-
-        //TimeUnit.SECONDS.sleep(10);
-      //  System.out.println("got to read 20");
         BufferedReader reader;
-			  reader = new BufferedReader(new FileReader("Text.txt"));
-			  line = reader.readLine();
-
-        //TimeUnit.SECONDS.sleep(5);
-
-			  reader.close();
-
-
-        //System.out.println(line);
+	reader = new BufferedReader(new FileReader("Text.txt"));
+	line = reader.readLine();
+	reader.close();
         while (line.equals("20"))
         {
-
-          //  System.out.println("got to while");
             BufferedReader reader1;
-    			  reader1 = new BufferedReader(new FileReader("Text.txt"));
-    			  line = reader1.readLine();
-            //System.out.println("has not pressed yet" + line);
+    	    reader1 = new BufferedReader(new FileReader("Text.txt"));
+    	    line = reader1.readLine();
             try {
               TimeUnit.SECONDS.sleep(1);
             }
@@ -153,12 +120,11 @@ public class Player {
               throw new RuntimeException(e);
             }
 
-    			  reader1.close();
+    	    reader1.close();
             if (!(line.equals("20")))
             {
               System.out.println("move entered: " + line);
               break;
-
             }
             else {
               try {
@@ -170,31 +136,10 @@ public class Player {
             }
           }
 
-
-
-
-
-        //TimeUnit.SECONDS.sleep(10);
-        //String data = console.readLine();
-        ////gui input insted of keyboard input
-        /*GUI g = new GUI();
-        TimeUnit.SECONDS.sleep(1);
-        int data = g.getMoveNum();
-        System.out.println(data);
-        while (data == 0){
-          GUI p = new GUI();
-          TimeUnit.SECONDS.sleep(1);
-          data = p.moveNum;
-          System.out.println(data);
-        } */
-        System.out.println(line);
-        //String dString = Integer.toString(data);
-      //  System.out.println(dString);
         if (line != "20")
         {
           serverOutput.writeBytes(line + "\n");
         }
-        //serverOutput.writeBytes(line + "\n");
       }
         catch(IOException ex){
           System.out.println (ex.toString());
@@ -202,18 +147,9 @@ public class Player {
       }
     }
 
-
-
-  //TODO: Add close methods
   public void success(){
     System.out.println("*Your was response was received by the server | your move was legitimate*");
     System.out.println("Now waiting for your opponents response...");
-  }
-
-  public void failure(){
-    /*System.out.println("*Your response was received by the sever | your move was NOT legitimate*");
-    System.out.println("PLEASE ENTER A LEGAL NUMBER BETWEEN 1-8");
-    play(); */
   }
 
   public void finished(){
