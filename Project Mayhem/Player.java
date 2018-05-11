@@ -80,7 +80,8 @@ GUI g = new GUI();
       try{
         String temp = keyboard.nextLine();
         ////gui input insted of keyboard input
-        int data = g.moveNum;
+        int data = g.getMoveNum();
+        System.out.println(data);
         String dString = Integer.toString(data);
         System.out.println(dString);
         serverOutput.writeBytes(dString + "\n");
