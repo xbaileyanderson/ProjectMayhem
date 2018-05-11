@@ -21,6 +21,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 import java.awt.EventQueue;
+import java.util.concurrent.TimeUnit;
 
 
 public class Player {
@@ -41,7 +42,7 @@ public class Player {
 			}
   });
 }
-GUI g = new GUI();
+
   private String hostname;
   private int port;
 
@@ -85,16 +86,34 @@ GUI g = new GUI();
 
 
   public void play(){
-
+    Scanner console = new Scanner(System.in);
     System.out.println("Make your move");
       try{
-        String temp = keyboard.nextLine();
+        TimeUnit.SECONDS.sleep(10);
+
+        BufferedReader reader;
+			  reader = new BufferedReader(new FileReader("Text.txt"));
+			  String line = reader.readLine();
+
+			  reader.close();
+
+        //TimeUnit.SECONDS.sleep(10);
+        //String data = console.readLine();
         ////gui input insted of keyboard input
+        /*GUI g = new GUI();
+        TimeUnit.SECONDS.sleep(1);
         int data = g.getMoveNum();
         System.out.println(data);
-        String dString = Integer.toString(data);
-        System.out.println(dString);
-        serverOutput.writeBytes(dString + "\n");
+        while (data == 0){
+          GUI p = new GUI();
+          TimeUnit.SECONDS.sleep(1);
+          data = p.moveNum;
+          System.out.println(data);
+        } */
+        System.out.println(line);
+        //String dString = Integer.toString(data);
+      //  System.out.println(dString);
+        serverOutput.writeBytes(line + "\n");
       }
       catch(Exception e){
         System.out.println(e.getMessage());
