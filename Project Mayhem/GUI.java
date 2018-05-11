@@ -236,8 +236,8 @@ public class GUI extends JFrame {
 		btnArgyros.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				btnMove_3.setText("Argyros Move 3");
-				btnMove_4.setText("Argyros Move 4");
+				btnMove_3.setText("Analyze Trend");
+				btnMove_4.setText("Seal the Deal");
 				move3Out = 7; //argyros move 3
 				move4Out = 12; //argyros move 4
 			}
@@ -252,8 +252,8 @@ public class GUI extends JFrame {
 		});
 		btnCOPA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnMove_3.setText("COPA Move 3");
-				btnMove_4.setText("COPA Move 4");
+				btnMove_3.setText("Musical Enchantment");
+				btnMove_4.setText("Power Drums");
 				move3Out = 4; //move 3 COPA
 				move4Out = 9; //move 4 COPA
 			}
@@ -264,8 +264,8 @@ public class GUI extends JFrame {
 		btnCrean.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				btnMove_3.setText("Crean Move 3");
-				btnMove_4.setText("Crean Move 4");
+				btnMove_3.setText("Psycho-Analysis");
+				btnMove_4.setText("Therapy Session");
 				move3Out = 6;//move 3 CREAN
 				move4Out = 11;//move 4 CREAN
 			}
@@ -276,8 +276,8 @@ public class GUI extends JFrame {
 		btnDodge.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				btnMove_3.setText("Dodge Move 3");
-				btnMove_4.setText("Dodge Move 4");
+				btnMove_3.setText("Script change");
+				btnMove_4.setText("Action!");
 				move3Out = 5; //move 3 Dodge
 				move4Out = 10; //move 4 Dodge
 			}
@@ -288,13 +288,13 @@ public class GUI extends JFrame {
 		btnSchmid.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				btnMove_3.setText("Schmid Move 3");
-				btnMove_4.setText("Schmid Move 4");
+				btnMove_3.setText("Caffeine Bender");
+				btnMove_4.setText("DDOS attack");
 				move3Out = 3; //move 3 Schmid
 				move4Out = 8; //move 4 Schmid
 			}
 		});
 		panel.add(btnSchmid);
-
 	}
 }
+
