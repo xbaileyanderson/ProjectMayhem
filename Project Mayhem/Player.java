@@ -86,16 +86,67 @@ public class Player {
 
 
   public void play(){
+    String line;
     Scanner console = new Scanner(System.in);
     System.out.println("Make your move");
-      try{
-        TimeUnit.SECONDS.sleep(10);
+    try {
+      File fout = new File("Text.txt");
+      FileOutputStream fos = new FileOutputStream(fout);
 
+      BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+
+        bw.write("20");
+        bw.close();
+
+
+
+        //TimeUnit.SECONDS.sleep(10);
+      //  System.out.println("got to read 20");
         BufferedReader reader;
 			  reader = new BufferedReader(new FileReader("Text.txt"));
-			  String line = reader.readLine();
+			  line = reader.readLine();
+
+        //TimeUnit.SECONDS.sleep(5);
 
 			  reader.close();
+
+
+        //System.out.println(line);
+        while (line.equals("20"))
+        {
+
+          //  System.out.println("got to while");
+            BufferedReader reader1;
+    			  reader1 = new BufferedReader(new FileReader("Text.txt"));
+    			  line = reader1.readLine();
+            //System.out.println("has not pressed yet" + line);
+            try {
+              TimeUnit.SECONDS.sleep(1);
+            }
+            catch(InterruptedException e) {
+              throw new RuntimeException(e);
+            }
+
+    			  reader1.close();
+            if (!(line.equals("20")))
+            {
+              System.out.println("move entered: " + line);
+              break;
+
+            }
+            else {
+              try {
+                TimeUnit.SECONDS.sleep(1);
+              }
+              catch(InterruptedException e) {
+                throw new RuntimeException(e);
+              }
+            }
+          }
+
+
+
+
 
         //TimeUnit.SECONDS.sleep(10);
         //String data = console.readLine();
@@ -113,12 +164,19 @@ public class Player {
         System.out.println(line);
         //String dString = Integer.toString(data);
       //  System.out.println(dString);
-        serverOutput.writeBytes(line + "\n");
+        if (line != "20")
+        {
+          serverOutput.writeBytes(line + "\n");
+        }
+        //serverOutput.writeBytes(line + "\n");
       }
-      catch(Exception e){
-        System.out.println(e.getMessage());
+        catch(IOException ex){
+          System.out.println (ex.toString());
+          System.out.println("Could not find file ");
       }
-  }
+    }
+
+
 
   //TODO: Add close methods
   public void success(){
