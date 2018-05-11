@@ -1,5 +1,3 @@
-//This is the file that contains the games GUI
-//It is broken down into several components
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -40,8 +38,8 @@ public class GUI extends JFrame {
 	private JButton btnSchmid;
 	private String tempMove3;
 	private String tempMove4;
-	private String move3Out = "test3";
-	private String move4Out = "test 4";
+	private int move3Out = 3;
+	private int move4Out = 4;
 
 	/**
 	 * Launch the application.
@@ -90,7 +88,7 @@ public class GUI extends JFrame {
 		btnMove_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("1");
+				System.out.println(1);
 			}
 		});
 		panel_1.add(btnMove_1);//move 1
@@ -99,7 +97,7 @@ public class GUI extends JFrame {
 		btnMove_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("2");
+				System.out.println(2);
 			}
 		});
 		panel_1.add(btnMove_2);//move2
@@ -143,8 +141,8 @@ public class GUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				btnMove_3.setText("Argyros Move 3");
 				btnMove_4.setText("Argyros Move 4");
-				move3Out = "move3Argyros";
-				move4Out = "move4Argyros";
+				move3Out = 7; //argyros move 3
+				move4Out = 12; //argyros move 4
 			}
 		});
 		panel.add(btnArgyros);
@@ -159,8 +157,8 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				btnMove_3.setText("COPA Move 3");
 				btnMove_4.setText("COPA Move 4");
-				move3Out = "move3COPA";
-				move4Out = "move4COPA";
+				move3Out = 4; //move 3 COPA
+				move4Out = 9; //move 4 COPA
 			}
 		});
 		panel.add(btnCOPA);
@@ -171,8 +169,8 @@ public class GUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				btnMove_3.setText("Crean Move 3");
 				btnMove_4.setText("Crean Move 4");
-				move3Out = "move3Crean";
-				move4Out = "move4Crean";
+				move3Out = 6;//move 3 CREAN
+				move4Out = 11;//move 4 CREAN
 			}
 		});
 		panel.add(btnCrean);
@@ -183,8 +181,8 @@ public class GUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				btnMove_3.setText("Dodge Move 3");
 				btnMove_4.setText("Dodge Move 4");
-				move3Out = "move3Dodge";
-				move4Out = "move4Dodge";
+				move3Out = 5; //move 3 Dodge
+				move4Out = 10; //move 4 Dodge
 			}
 		});
 		panel.add(btnDodge);
@@ -195,8 +193,8 @@ public class GUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				btnMove_3.setText("Schmid Move 3");
 				btnMove_4.setText("Schmid Move 4");
-				move3Out = "move3Schmid";
-				move4Out = "move4Schmid";
+				move3Out = 3; //move 3 Schmid
+				move4Out = 8; //move 4 Schmid
 			}
 		});
 		panel.add(btnSchmid);
