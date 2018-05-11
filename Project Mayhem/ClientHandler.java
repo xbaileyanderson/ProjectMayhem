@@ -345,8 +345,9 @@ switch (moveNum)
             player2Input = new BufferedReader(
                     new InputStreamReader(player2.getInputStream()));
             player2Output = new DataOutputStream(player2.getOutputStream());
-            player2Output.writeBytes("Welcome to Project Mayhem. You are the second to connect\n");
+            player2Output.writeBytes("Welcome to Project Mayhem. You are the second to connect\n" + "*Beginning Game*\n" + "Player 2 Health = " + health2 + "\n");
             System.out.println("Client 2 connected");
+            player1Output.writeBytes("*Beginning Game*\n" + "Player 1 Health = " + health1 + "\n");
             break;
           }
         }
@@ -356,9 +357,11 @@ switch (moveNum)
           if (!playing)
             break;
           clientTurn(player1, player1Input, player1Output, 0, 0);
+          player1Output.writeBytes("Player 1 health: " + health1 + "\n");
           if (!playing)
             break;
           clientTurn(player2, player2Input, player2Output, 1, 1);
+          player2Output.writeBytes("Player 2 health: " + health2 + "\n");
         }
       } catch (Exception e) {
 
