@@ -6,24 +6,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JTextField;
-import javax.swing.BoxLayout;
-import javax.swing.JTextArea;
-import javax.swing.JFormattedTextField;
-import javax.swing.JSplitPane;
-import javax.swing.AbstractListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 
 import java.util.Scanner;
 import java.io.*;
@@ -33,33 +22,36 @@ import java.awt.Font;
 
 public class GUI extends JFrame {
 
-	private JPanel contentPane; //contains everything
-	private JPanel panel; //top left panel, contains two labels, a text field, and a list (Name and College)
-	private JLabel lblSelectYourCollege;//Label before the next list
-	private JLabel lblServerMessages;//label above window where terminal messages are printed
-	private JPanel panel_1; //top right panel, contains 4 move buttons
-	private JButton btnMove_1;
-	private JButton btnArgyros;
+	private JPanel contentPane; // topmost container
+	private JPanel panel; // top left panel, contains two labels, a text field, and a list (Name and
+							// College)
+	private JLabel lblSelectYourCollege;// Label before the college buttons
+	private JPanel panel_1; // top right panel, contains 4 move buttons
+	private JButton btnMove_1;// first move
+
+	private JButton btnArgyros;// College names for left five buttons
 	private JButton btnCrean;
 	private JButton btnCOPA;
 	private JButton btnDodge;
 	private JButton btnSchmid;
-	private String tempMove3;
-	private String tempMove4;
+
+	// Moves 3 and 4 are assigned base values, but are changed when a college is
+	// selected
+	// The move3Out is an integer passed after move 3/move 4 are clicked. It allows
+	// the
+	// client handler to decide which move to process via a switch statement.
 	private int move3Out = 3;
 	private int move4Out = 4;
-	private Scanner keyboard = new Scanner(System.in);
 
+	// moveNum stores the move3Out or move4Out value and passes it to the client
+	// handler
 	public int moveNum;
-
-
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 
-		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -71,8 +63,8 @@ public class GUI extends JFrame {
 
 			}
 		});
-		//Construct a dialog to popup at game start.
-		//String message is used in a JOptionPane constructor.
+		// Construct a dialog to popup at game start.
+		// String message is used in a JOptionPane constructor.
 		String message = "Hello! Welcome to Project Mayhem, your Chapman Student fightclub.\n"
 				+ "We pit two players against each other. Each player starts with 100 health\n"
 				+ "and the fight ends when one of your health bars reaches zero.\n\n"
@@ -96,54 +88,48 @@ public class GUI extends JFrame {
 				+ "Select wisely! Hint: COPA is the overpowered pick (until you graduate)\n"
 				+ "\nLook at your console/terminal to see messages from the server. You will be notified\n"
 				+ "when it is your turn. You will see live updates of your and your opponent's health.\n"
-				+ "You will also be notified of when one player wins and the other loses!"; //used in constructor
+				+ "You will also be notified of when one player wins and the other loses!"; // used in constructor
 		JOptionPane.showMessageDialog(null, message, "Instructions", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	// Used to set moveNum equal to an integer m, which is the moveOut value
 	public void setMoveNum(int m) {
 		this.moveNum = m;
 	}
 
-	public int getMoveNum(){
+	// returns moveNum, used to send value to ClientHandler
+	public int getMoveNum() {
 		return this.moveNum;
 	}
 
 	/*
-	 * Create the frame.
+	 * GUI constructor.
 	 */
 	public GUI() {
 		setBackground(Color.BLACK);
 		setTitle("Project Mayhem");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
+		contentPane = new JPanel(); // JPanel is top level container
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		panel = new JPanel();
+		panel = new JPanel();// Multiple panels to divide the JPanel into sections
 		panel.setBackground(Color.BLACK);
-		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
+
 		panel.setBounds(16, 71, 204, 168);
 		contentPane.add(panel);
-
-
-
-		lblServerMessages = new JLabel("Server Messages");
-		lblServerMessages.setBounds(16, 130, 111, 38);
-		contentPane.add(lblServerMessages);
 
 		panel_1 = new JPanel();
 		panel_1.setBackground(Color.BLACK);
 		panel_1.setBounds(240, 71, 204, 168);
 		contentPane.add(panel_1);
 
+		// Move buttons below
 
-		//Move buttons below
-
-
-		btnMove_1 = new JButton("Basic Attack 1");//move1
+		btnMove_1 = new JButton("Basic Attack 1");// move1
 		btnMove_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -155,27 +141,26 @@ public class GUI extends JFrame {
 					try {
 						bw.write("1");
 						bw.close();
+					} catch (IOException ex) {
+						System.out.println(ex.toString());
+						System.out.println("Could not find file ");
 					}
-					catch(IOException ex){
-        		System.out.println (ex.toString());
-        		System.out.println("Could not find file ");
-    			}
 					moveNum = 1;
 					System.out.println(moveNum);
-				}
-					catch (FileNotFoundException n) {
-      		n.printStackTrace();
+				} catch (FileNotFoundException n) {
+					n.printStackTrace();
 				}
 			}
 
-
 		});
-		
+
+		// Label above moves
 		JLabel lblSelectAMove = new JLabel("Select a Move");
 		lblSelectAMove.setForeground(Color.WHITE);
 		panel_1.add(lblSelectAMove);
-		panel_1.add(btnMove_1);//move 1
+		panel_1.add(btnMove_1);// move 1
 
+		// move 2 button
 		JButton btnMove_2 = new JButton("Basic Attack 2");
 		btnMove_2.addMouseListener(new MouseAdapter() {
 			@Override
@@ -188,23 +173,22 @@ public class GUI extends JFrame {
 					try {
 						bw.write("2");
 						bw.close();
-					}
-					catch(IOException ex){
-						System.out.println (ex.toString());
+					} catch (IOException ex) {
+						System.out.println(ex.toString());
 						System.out.println("Could not find file ");
 					}
 					moveNum = 2;
 					System.out.println(moveNum);
-				}
-					catch (FileNotFoundException n) {
+				} catch (FileNotFoundException n) {
 					n.printStackTrace();
 				}
 			}
 		});
-		panel_1.add(btnMove_2);//move2
+		panel_1.add(btnMove_2);// move2
 
+		// move 3 button
 		String tempMove3 = "Move 3";
-		JButton btnMove_3 = new JButton(tempMove3);//move3
+		JButton btnMove_3 = new JButton(tempMove3);// move3
 		btnMove_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -217,23 +201,23 @@ public class GUI extends JFrame {
 						String m = Integer.toString(move3Out);
 						bw.write(m);
 						bw.close();
-					}
-					catch(IOException ex){
-						System.out.println (ex.toString());
+					} catch (IOException ex) {
+						System.out.println(ex.toString());
 						System.out.println("Could not find file ");
 					}
 					moveNum = move3Out;
 					System.out.println(move3Out);
-				}
-					catch (FileNotFoundException n) {
+				} catch (FileNotFoundException n) {
+
 					n.printStackTrace();
 				}
 			}
 		});
 		panel_1.add(btnMove_3);
 
+		// move4 button
 		String tempMove4 = "Move 4";
-		JButton btnMove_4 = new JButton(tempMove4);//move4
+		JButton btnMove_4 = new JButton(tempMove4);// move4
 		btnMove_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -246,25 +230,24 @@ public class GUI extends JFrame {
 						String m = Integer.toString(move4Out);
 						bw.write(m);
 						bw.close();
-					}
-					catch(IOException ex){
-						System.out.println (ex.toString());
+					} catch (IOException ex) {
+						System.out.println(ex.toString());
 						System.out.println("Could not find file ");
 					}
 					moveNum = move4Out;
 					System.out.println(move4Out);
-				}
-					catch (FileNotFoundException n) {
+				} catch (FileNotFoundException n) {
 					n.printStackTrace();
 				}
 			}
 		});
 		panel_1.add(btnMove_4);
 
-
-		//Here you select your college by clicking one of the college buttons in the top left side of the GUI.
-		//After clicking one of the college buttons, the move 3 and move 4 button on the right side of the gui
-		//changes name and output, based on the college you selected.
+		// Here you select your college by clicking one of the college buttons in the
+		// top left side of the GUI.
+		// After clicking one of the college buttons, the move 3 and move 4 button on
+		// the right side of the gui
+		// changes name and output, based on the college you selected.
 		lblSelectYourCollege = new JLabel("Select your College");
 		lblSelectYourCollege.setForeground(Color.WHITE);
 		panel.add(lblSelectYourCollege);
@@ -275,8 +258,8 @@ public class GUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				btnMove_3.setText("Analyze Trend");
 				btnMove_4.setText("Seal the Deal");
-				move3Out = 7; //argyros move 3
-				move4Out = 12; //argyros move 4
+				move3Out = 7; // argyros move 3
+				move4Out = 12; // argyros move 4
 			}
 		});
 		panel.add(btnArgyros);
@@ -292,8 +275,8 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				btnMove_3.setText("Musical Enchantment");
 				btnMove_4.setText("Power Drums");
-				move3Out = 4; //move 3 COPA
-				move4Out = 9; //move 4 COPA
+				move3Out = 4; // move 3 COPA
+				move4Out = 9; // move 4 COPA
 			}
 		});
 		panel.add(btnCOPA);
@@ -304,8 +287,8 @@ public class GUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				btnMove_3.setText("Psycho-Analysis");
 				btnMove_4.setText("Therapy Session");
-				move3Out = 6;//move 3 CREAN
-				move4Out = 11;//move 4 CREAN
+				move3Out = 6;// move 3 CREAN
+				move4Out = 11;// move 4 CREAN
 			}
 		});
 		panel.add(btnCrean);
@@ -316,8 +299,8 @@ public class GUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				btnMove_3.setText("Script change");
 				btnMove_4.setText("Action!");
-				move3Out = 5; //move 3 Dodge
-				move4Out = 10; //move 4 Dodge
+				move3Out = 5; // move 3 Dodge
+				move4Out = 10; // move 4 Dodge
 			}
 		});
 		panel.add(btnDodge);
@@ -328,17 +311,18 @@ public class GUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				btnMove_3.setText("Caffeine Bender");
 				btnMove_4.setText("DDOS attack");
-				move3Out = 3; //move 3 Schmid
-				move4Out = 8; //move 4 Schmid
+				move3Out = 3; // move 3 Schmid
+				move4Out = 8; // move 4 Schmid
 			}
 		});
 		panel.add(btnSchmid);
-		
+
+		// Top of GUI, welcome message.
 		JLabel lblWelcomeToProject = new JLabel("Welcome to Project Mayhem!");
 		lblWelcomeToProject.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 		lblWelcomeToProject.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWelcomeToProject.setForeground(Color.WHITE);
 		lblWelcomeToProject.setBounds(6, 22, 444, 37);
-		contentPane.add(lblWelcomeToProject);	
+		contentPane.add(lblWelcomeToProject);
 	}
 }
