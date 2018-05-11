@@ -125,7 +125,7 @@ switch (moveNum)
       return m;
     }
 
-    //heals base 5 plus rand 15
+    //Caffeine Bender
     public Move move3Schmid()
     {
     Move m = new Move(0, 0, false);
@@ -133,7 +133,6 @@ switch (moveNum)
     int healthSave = 5;
     int addsHealth = healthSave + rand.nextInt(15);
     m.heal = addsHealth;
-    System.out.println("this is schmid");
     return m;
     }
 
@@ -182,7 +181,7 @@ switch (moveNum)
   return m;
   }
 
-
+//DDOS Attack
   public Move move4Schmid() {
     Move m = new Move(0,0,false);
     Random rand = new Random();
@@ -224,20 +223,17 @@ switch (moveNum)
     return m;
   }
 
-  //Look for investors:
-  //"Raising money to buy a new weapon"
-  //"Raised just enough to do: " + damage
+  //Seal the Deal
   public Move move4Argyros() {
     Move m = new Move(0,0,false);
     Random rand = new Random();
-    int baseDamage = 20;
-    int damage = baseDamage+rand.nextInt(50);
+    int baseDamage = 2;
+    int damage = baseDamage+rand.nextInt(7);
     m.damage = damage;
     return m;
   }
 
-  //This move will eventually block the opponant's attack, for now as a place holder until we get the clienthandler
-  //working I am making it an attack
+  //Power-Drums
   public Move move4COPA()
   {
     Move m = new Move(0,0,false);
