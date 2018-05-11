@@ -39,9 +39,8 @@ public class Player {
 				}
 
 			}
-	}
-  }
-
+  });
+}
 GUI g = new GUI();
   private String hostname;
   private int port;
