@@ -65,6 +65,14 @@ public class GUI extends JFrame {
 		});
 	}
 
+	public void setMoveNum(int m) {
+		this.moveNum = m;
+	}
+
+	public int getMoveNum(){
+		return this.moveNum;
+	}
+
 	/**
 	 * Create the frame.
 	 */
@@ -99,7 +107,7 @@ public class GUI extends JFrame {
 		btnMove_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				moveNum = 1;
+				setMoveNum(1);
 			}
 		});
 		panel_1.add(btnMove_1);//move 1
@@ -108,7 +116,7 @@ public class GUI extends JFrame {
 		btnMove_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				moveNum = 2;
+				setMoveNum(2);
 			}
 		});
 		panel_1.add(btnMove_2);//move2
@@ -118,7 +126,7 @@ public class GUI extends JFrame {
 		btnMove_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				moveNum = move3Out;
+				setMoveNum(move3Out);
 			}
 		});
 		panel_1.add(btnMove_3);
@@ -128,7 +136,7 @@ public class GUI extends JFrame {
 		btnMove_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				moveNum = move4Out;
+				setMoveNum(move4Out);
 			}
 		});
 		panel_1.add(btnMove_4);
