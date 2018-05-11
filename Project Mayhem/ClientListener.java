@@ -1,10 +1,3 @@
-/**
- * ClientListener.java
- *
- * This class runs on the client end and just
- * displays any text received from the server.
- *
- */
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -30,18 +23,13 @@ public class ClientListener implements Runnable {
     this.running = true;
   }
 
-  /**
-   * Gets message from server and displays it to the user.
-   */
   public void run() {
     try {
       BufferedReader serverInput = new BufferedReader(
           new InputStreamReader(connectionSock.getInputStream()));
       while (running) {
-        // Get data sent from the server
         String serverText = serverInput.readLine();
         if (serverInput != null) {
-          //System.out.println("CLIENT DEBUG: " + serverText);
           parseResponse(serverText);
         }
       }
@@ -66,6 +54,4 @@ public class ClientListener implements Runnable {
     else
       System.out.println(serverResponse);
   }
-
-
 }
