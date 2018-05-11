@@ -27,20 +27,11 @@ public class Player {
   public static void main(String[] args) {
     Player p = new Player();
     p.startListener();
-    GUI g = new GUI();
-    EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUI frame = new GUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 
-			}
-		});
+    GUI game = new GUI();
   }
 
+GUI g = new GUI();
   private String hostname;
   private int port;
 
@@ -83,15 +74,16 @@ public class Player {
     }
 
 
-
-
   public void play(){
 
     System.out.println("Make your move");
       try{
-        String data = keyboard.nextLine();
+        String temp = keyboard.nextLine();
         ////gui input insted of keyboard input
-        serverOutput.writeBytes(data + "\n");
+        int data = g.moveNum;
+        String dString = Integer.toString(data);
+        System.out.println(dString);
+        serverOutput.writeBytes(dString + "\n");
       }
       catch(Exception e){
         System.out.println(e.getMessage());
