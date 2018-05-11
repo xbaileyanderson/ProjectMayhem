@@ -18,15 +18,27 @@
  */
 
 import java.io.*;
-
 import java.net.Socket;
-
 import java.util.Scanner;
+import java.awt.EventQueue;
+
 
 public class Player {
   public static void main(String[] args) {
     Player p = new Player();
     p.startListener();
+    GUI g = new GUI();
+    EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUI frame = new GUI();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+		});
   }
 
   private String hostname;
