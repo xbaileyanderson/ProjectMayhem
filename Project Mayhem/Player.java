@@ -29,6 +29,16 @@ public class Player {
     p.startListener();
 
     GUI game = new GUI();
+    	EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUI frame = new GUI();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
   }
 
 GUI g = new GUI();
