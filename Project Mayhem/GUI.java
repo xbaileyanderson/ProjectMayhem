@@ -28,6 +28,8 @@ import java.awt.event.ActionEvent;
 import java.util.Scanner;
 import java.io.*;
 import java.awt.Color;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class GUI extends JFrame {
 
@@ -92,10 +94,10 @@ public class GUI extends JFrame {
 				+ "Schmid - Caffeine Bender: Heal for 5 + an amount between 1 and 15.\n"
 				+ "Schmid - DDOS Attack: You have a 50-50 chance of dealing 20 damage or healing the enemy for 20 damage!\n\n"
 				+ "Select wisely! Hint: COPA is the overpowered pick (until you graduate)\n"
-				+ "\nAt the bottom of the screen is where you will see server messages. You will be notified\n"
+				+ "\nLook at your console/terminal to see messages from the server. You will be notified\n"
 				+ "when it is your turn. You will see live updates of your and your opponent's health.\n"
 				+ "You will also be notified of when one player wins and the other loses!"; //used in constructor
-		JOptionPane.showMessageDialog(null, message, "Display Message", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, message, "Instructions", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public void setMoveNum(int m) {
@@ -123,7 +125,7 @@ public class GUI extends JFrame {
 		panel = new JPanel();
 		panel.setBackground(Color.BLACK);
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-		panel.setBounds(6, 6, 211, 124);
+		panel.setBounds(16, 71, 204, 168);
 		contentPane.add(panel);
 
 
@@ -134,7 +136,7 @@ public class GUI extends JFrame {
 
 		panel_1 = new JPanel();
 		panel_1.setBackground(Color.BLACK);
-		panel_1.setBounds(240, 26, 204, 104);
+		panel_1.setBounds(240, 71, 204, 168);
 		contentPane.add(panel_1);
 
 
@@ -168,6 +170,10 @@ public class GUI extends JFrame {
 
 
 		});
+		
+		JLabel lblSelectAMove = new JLabel("Select a Move");
+		lblSelectAMove.setForeground(Color.WHITE);
+		panel_1.add(lblSelectAMove);
 		panel_1.add(btnMove_1);//move 1
 
 		JButton btnMove_2 = new JButton("Basic Attack 2");
@@ -256,13 +262,6 @@ public class GUI extends JFrame {
 		panel_1.add(btnMove_4);
 
 
-		JTextPane textPane = new JTextPane();
-		textPane.setEditable(false);
-		textPane.setBounds(6, 160, 438, 112);
-
-		contentPane.add(textPane);
-
-
 		//Here you select your college by clicking one of the college buttons in the top left side of the GUI.
 		//After clicking one of the college buttons, the move 3 and move 4 button on the right side of the gui
 		//changes name and output, based on the college you selected.
@@ -334,5 +333,12 @@ public class GUI extends JFrame {
 			}
 		});
 		panel.add(btnSchmid);
+		
+		JLabel lblWelcomeToProject = new JLabel("Welcome to Project Mayhem!");
+		lblWelcomeToProject.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		lblWelcomeToProject.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWelcomeToProject.setForeground(Color.WHITE);
+		lblWelcomeToProject.setBounds(6, 22, 444, 37);
+		contentPane.add(lblWelcomeToProject);	
 	}
 }
