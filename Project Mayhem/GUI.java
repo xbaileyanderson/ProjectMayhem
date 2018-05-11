@@ -24,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import java.util.Scanner;
+import java.io.*;
 
 public class GUI extends JFrame {
 
@@ -107,8 +108,28 @@ public class GUI extends JFrame {
 		btnMove_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setMoveNum(1);
+				try {
+					File fout = new File("Text.txt");
+					FileOutputStream fos = new FileOutputStream(fout);
+
+					BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+					try {
+						bw.write("1");
+						bw.close();
+					}
+					catch(IOException ex){
+        		System.out.println (ex.toString());
+        		System.out.println("Could not find file ");
+    			}
+					moveNum = 1;
+					System.out.println(moveNum);
+				}
+					catch (FileNotFoundException n) {
+      		n.printStackTrace();
+				}
 			}
+
+
 		});
 		panel_1.add(btnMove_1);//move 1
 
@@ -116,7 +137,25 @@ public class GUI extends JFrame {
 		btnMove_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setMoveNum(2);
+				try {
+					File fout = new File("Text.txt");
+					FileOutputStream fos = new FileOutputStream(fout);
+
+					BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+					try {
+						bw.write("2");
+						bw.close();
+					}
+					catch(IOException ex){
+						System.out.println (ex.toString());
+						System.out.println("Could not find file ");
+					}
+					moveNum = 2;
+					System.out.println(moveNum);
+				}
+					catch (FileNotFoundException n) {
+					n.printStackTrace();
+				}
 			}
 		});
 		panel_1.add(btnMove_2);//move2
@@ -126,7 +165,26 @@ public class GUI extends JFrame {
 		btnMove_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setMoveNum(move3Out);
+				try {
+					File fout = new File("Text.txt");
+					FileOutputStream fos = new FileOutputStream(fout);
+
+					BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+					try {
+						String m = Integer.toString(move3Out);
+						bw.write(m);
+						bw.close();
+					}
+					catch(IOException ex){
+						System.out.println (ex.toString());
+						System.out.println("Could not find file ");
+					}
+					moveNum = move3Out;
+					System.out.println(move3Out);
+				}
+					catch (FileNotFoundException n) {
+					n.printStackTrace();
+				}
 			}
 		});
 		panel_1.add(btnMove_3);
@@ -136,7 +194,26 @@ public class GUI extends JFrame {
 		btnMove_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setMoveNum(move4Out);
+				try {
+					File fout = new File("Text.txt");
+					FileOutputStream fos = new FileOutputStream(fout);
+
+					BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+					try {
+						String m = Integer.toString(move4Out);
+						bw.write(m);
+						bw.close();
+					}
+					catch(IOException ex){
+						System.out.println (ex.toString());
+						System.out.println("Could not find file ");
+					}
+					moveNum = move4Out;
+					System.out.println(move4Out);
+				}
+					catch (FileNotFoundException n) {
+					n.printStackTrace();
+				}
 			}
 		});
 		panel_1.add(btnMove_4);
